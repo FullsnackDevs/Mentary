@@ -1,3 +1,26 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+html {
+  font-size: 62.5%;
+  line-height: 1.6rem;
+  box-sizing: border-box;
+  font-family: "Helvetica", "Poppins", Arial, sans-serif;
+  -webkit-tap-highlight-color: transparent;
+  font-size: 1.6rem;
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: inherit;
+  letter-spacing: 1px;
+}
+
+.menu-icon {
+  background-color: white;
+  width: 1.8rem;
+  height: 1.8rem;
+  border-radius: 50%;
+}
