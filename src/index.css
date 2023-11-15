@@ -2,13 +2,19 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  --text-black: #3f3f3f;
+  --text-white: #ffffff;
+}
+
 html {
-  font-size: 62.5%;
-  line-height: 1.6rem;
+  font-size: 16px;
+  line-height: 1rem;
   box-sizing: border-box;
-  font-family: "Helvetica", "Poppins", Arial, sans-serif;
+  font-family: "Helvetica Neue", "Poppins", Arial, sans-serif;
   -webkit-tap-highlight-color: transparent;
-  font-size: 1.6rem;
+  font-size: 1rem;
+  color: var(--text-black);
 }
 
 * {
@@ -18,9 +24,123 @@ html {
   letter-spacing: 1px;
 }
 
+i {
+  margin: 0 auto;
+  font-size: 1rem;
+}
+
+.menu-btn {
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
 .menu-icon {
   background-color: white;
-  width: 1.8rem;
-  height: 1.8rem;
+  width: 3rem;
+  height: 3rem;
   border-radius: 50%;
+  box-shadow: rgba(48, 48, 48, 0.2) 0 0 20px;
+}
+
+button.menu-btn:hover {
+  color: #707070;
+}
+
+.sidebar {
+  position: fixed;
+  z-index: 20;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 360px;
+  padding: 16px 0;
+  overflow-y: auto;
+  z-index: 100;
+  background-color: #ffffff;
+  transform: translateX(-100%);
+  transition: transform 0.25s;
+  box-shadow: rgba(48, 48, 48, 0.2) 0 0 20px;
+}
+
+.sidebar.active {
+  transform: translateX(0);
+}
+
+.menu-syn {
+  opacity: 0.5;
+  cursor: default !important;
+  background-color: #ffffff !important;
+}
+
+.menu-btn.menu-item:hover {
+  color: #ff0000;
+  /* color: white;
+  background-color: #ff0000; */
+}
+
+.menu-item {
+  text-align: left;
+  padding: 12px 16px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: left;
+  cursor: pointer;
+  transition: background-color 0.25s ease;
+}
+
+.menu-item:hover {
+  background-color: #f5f5f5;
+}
+
+.menu-item > i {
+  width: 20px;
+  text-align: center;
+}
+
+.menu-item > span {
+  flex-grow: 1;
+  margin-left: 16px;
+  font-size: 1rem;
+  /* font-weight: 500; */
+}
+
+.divide-bar {
+  width: 90%;
+  height: 1px;
+  background-color: #e0e0e0;
+  margin: 8px auto;
+}
+
+/* TEMPLATE LIST */
+.tp-list {
+  width: 100%;
+  height: 500px;
+  min-height: min-content;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  padding: 16px;
+  gap: 8px;
+  overflow-y: scroll;
+}
+
+.tp-preview {
+  width: calc(50% - 4px);
+  height: auto;
+  padding: 4px;
+  border-radius: 8px;
+  transition: all 0.25s ease, box-shadow 0.1s ease;
+}
+
+.tp-preview:hover {
+  transform: scale(1.05);
+  box-shadow: rgba(48, 48, 48, 0.1) 0 0 20px;
+  cursor: pointer;
+}
+
+.tp-preview > img {
+  object-fit: cover;
+  border-radius: 4px;
+  height: 100%;
 }

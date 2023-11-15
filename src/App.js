@@ -2,32 +2,33 @@ import Editor from "./components/Editor";
 import Bot from "./components/Bot";
 import Sidebar from "./components/Sidebar";
 import "./index.css";
-import { useEffect, useState } from "react";
+import { useState, useLayoutEffect } from "react";
 
 export default function App() {
   const [state, setState] = useState(false);
 
-  useEffect(() => {
-    const menuIcons = document.querySelectorAll("button.menu-btn");
+  useLayoutEffect(() => {
+    const menuIcons = document.querySelectorAll(".menu-btn");
     menuIcons.forEach((menuIcon) =>
       menuIcon.addEventListener("click", () => {
-        setState(!state);
+        setTimeout(() => {
+          setState(!state);
+        }, 50);
       })
     );
   });
 
   return (
-    <div className="flex justify-between h-screen w-full">
-      <button className="menu-btn menu-icon fixed top-0 left-24 z-10">
-        <i className="fa-solid fa-bars"></i>
+    <div className="flex justify-between h-screen w-full relative">
+      <button className="menu-btn menu-icon fixed top-3 left-3 z-10">
+        <i
+          className="fa-solid fa-bars"
+          style={{
+            margin: "0 -2px 0 0",
+          }}
+        ></i>
       </button>
-      <div
-        className={
-          state
-            ? "sidebar fixed left-0 w-1/6 top-0 h-full bg-red-500"
-            : "sidebar fixed left-0 w-16 top-0 h-full bg-red-500 invisible"
-        }
-      >
+      <div className={state ? "sidebar active" : "sidebar"}>
         <Sidebar />
       </div>
       <Editor />
