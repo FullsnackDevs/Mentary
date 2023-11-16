@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/Mentary/static/css/main.63cbb7db.css",
+    "main.js": "/Mentary/static/js/main.601483af.js",
+    "index.html": "/Mentary/index.html",
+    "main.63cbb7db.css.map": "/Mentary/static/css/main.63cbb7db.css.map",
+    "main.601483af.js.map": "/Mentary/static/js/main.601483af.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.63cbb7db.css",
+    "static/js/main.601483af.js"
+  ]
+}
