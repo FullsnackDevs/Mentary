@@ -2,7 +2,7 @@ import Editor from "./components/Editor";
 import Bot from "./components/Bot";
 import Sidebar from "./components/Sidebar";
 import "./index.css";
-import { useState, useLayoutEffect } from "react";
+import { useState, useLayoutEffect, useEffect } from "react";
 
 export default function App() {
   const [state, setState] = useState(false);
@@ -18,8 +18,18 @@ export default function App() {
     );
   });
 
+  function handleClick() {
+    console.log(document.querySelector(".ql-editor"))
+    document.querySelector(".ql-editor").focus();
+  }
+
+  useEffect(() => {
+    document.querySelector(".ql-editor").style.fontSize = 'large';
+    document.querySelector(".ql-editor").style.letterSpacing = '2px';
+  })
+
   return (
-    <div className="flex justify-between h-screen w-full relative">
+    <div className="flex justify-between h-screen w-full relative" onClick={handleClick}>
       <button className="menu-btn menu-icon fixed top-3 left-3 z-10">
         <i
           className="fa-solid fa-bars"

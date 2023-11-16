@@ -1,67 +1,43 @@
 import { useState } from "react";
 import ReactQuill, { Quill } from "react-quill";
 import "react-quill/dist/quill.bubble.css";
-import quillEmoji from "react-quill-emoji";
-import "react-quill-emoji/dist/quill-emoji.css";
-import ToolbarEmoji from "./Emoji/ToolbarEmoji.js";
-import EmojiBlot from "./Emoji/EmojiBlot.js";
-
-Quill.register(
-  {
-    "formats/emoji": EmojiBlot,
-    "modules/emoji-toolbar": ToolbarEmoji,
-    "modules/emoji-shortname": quillEmoji.ShortNameEmoji,
-  },
-  true
-);
 
 function Editor() {
+  const [value, setValue] = useState("");
   const modules = {
     toolbar: [
-      [{ header: [1, 2, 3, 4, 5, 6, false] }],
-
-      [{ list: "ordered" }, { list: "bullet" }],
-      ["bold", "italic", "underline"],
-      [{ color: [] }, { background: [] }],
-      // [{ script: 'sub' }, { script: 'super' }],
-      [{ align: [] }],
-      ["link", "blockquote", "emoji"],
-      ["clean"],
+      [{ 'header': '1'}, {'header': '2'}],
+      [{size: []}],
+      [{align: []}],
+      ['bold', 'italic', 'underline', 'strike', 'blockquote'],
+       [{ color: [] }, { background: [] }],
+      [{'list': 'ordered'}, {'list': 'bullet'}],
+      ['link', 'image', 'video'],
+      ['clean'],
     ],
     clipboard: {
       // toggle to add extra line breaks when pasting HTML:
       matchVisual: false,
-    },
-    "emoji-toolbar": true,
-    "emoji-textarea": false,
-    "emoji-shortname": true,
-  };
+    }
+  }
 
   const formats = [
-    "header",
-    "size",
-    "bold",
-    "italic",
-    "underline",
-    "strike",
-    "blockquote",
-    "list",
-    "bullet",
-    "indent",
-    "link",
-    "image",
-    "color",
-    "emoji",
-  ];
+    'header', 'size',
+    'bold', 'italic', 'underline', 'strike', 'blockquote', 'color',
+    'list', 'bullet', 'align',
+    'link', 'image', 'video', 
+  ]
 
-  const [value, setValue] = useState("");
+  const handleChange = (e) => {
+    setValue(e.target);
+  }
 
   return (
     <div id="editor" className="h-full w-5/6 p-32">
       <ReactQuill
         theme="bubble"
         value={value}
-        onChange={setValue}
+        onChange={handleChange}
         className="h-screen w-full"
         placeholder="Typing..."
         bounds={"#editor"}
