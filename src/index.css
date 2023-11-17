@@ -125,7 +125,7 @@ button.menu-btn:hover {
   overflow-y: scroll;
 }
 
-.tp-preview {
+.tp-item {
   width: calc(50% - 4px);
   height: auto;
   padding: 4px;
@@ -133,14 +133,32 @@ button.menu-btn:hover {
   transition: all 0.25s ease, box-shadow 0.1s ease;
 }
 
-.tp-preview:hover {
+.tp-item:hover {
   transform: scale(1.05);
   box-shadow: rgba(48, 48, 48, 0.1) 0 0 20px;
   cursor: pointer;
 }
 
-.tp-preview > img {
+.tp-item > img {
   object-fit: cover;
   border-radius: 4px;
   height: 100%;
+}
+
+/* FOLDER LIST */
+.folder-list {
+  width: 100%;
+  height: 500px;
+  min-height: min-content;
+  display: flex;
+  justify-content: left;
+  flex-direction: column;
+  /* flex-wrap: wrap; */
+  /* padding: 16px; */
+  gap: 8px;
+  overflow-y: scroll;
+}
+
+.folder-item {
+  padding: 4px 16px;
 }
