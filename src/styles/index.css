@@ -1,6 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap");
 
 :root {
   --text-black: #3f3f3f;
@@ -11,7 +12,7 @@ html {
   font-size: 16px;
   line-height: 1rem;
   box-sizing: border-box;
-  font-family: "Helvetica Neue", "Poppins", Arial, sans-serif;
+  font-family: "Inter", "Helvetica Neue", "Poppins", Arial, sans-serif;
   -webkit-tap-highlight-color: transparent;
   font-size: 1rem;
   color: var(--text-black);

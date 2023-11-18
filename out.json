@@ -1,0 +1,41 @@
+{
+  "entities": {
+    "negative:negative": [
+      {
+        "body": "buồn",
+        "confidence": 1,
+        "end": 8,
+        "entities": {},
+        "id": "1102968227431775",
+        "name": "negative",
+        "role": "negative",
+        "start": 4,
+        "type": "value",
+        "value": "buồn"
+      }
+    ],
+    "subject:subject": [
+      {
+        "body": "tôi",
+        "confidence": 0.8906959638942646,
+        "end": 3,
+        "entities": {},
+        "id": "704564851610675",
+        "name": "subject",
+        "role": "subject",
+        "start": 0,
+        "type": "value",
+        "value": "tôi"
+      }
+    ]
+  },
+  "intents": [
+    {
+      "confidence": 0.9999996423722521,
+      "id": "1421370782105568",
+      "name": "express_emotion"
+    }
+  ],
+  "text": "tôi buồn",
+  "traits": {}
+}
