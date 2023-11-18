@@ -1,10 +1,38 @@
 import { Link } from "react-router-dom";
 import Editor from "./Editor";
-import { getDatabase } from "firebase/database";
+import { collection, query, getDocs} from "firebase/firestore";
+import { getDatabase} from "firebase/database";
+import { db } from "../firebase";
+import { createElement, useEffect, useLayoutEffect } from "react";
 
-const database = getDatabase();
 
 export default function Sidebar() {
+
+  var check = false;
+  useEffect(() => {
+    async function getBlogs() {
+      const q = query(collection(db, "blogs"));
+  
+      const querySnapshot = await getDocs(q);
+      const list = document.querySelector('.tp-list');
+      {querySnapshot.forEach((doc) => {
+        // doc.data() is never undefined for query doc snapshots
+        console.log(doc.id, " => ", doc.data().time);
+        const child = document.createElement('li');
+        child.innerHTML = `${doc.data().time}`
+        list.appendChild(child);
+        console.log(child)
+  
+      })}
+    }
+
+    if(!check){
+      getBlogs()
+      check = true;
+    }
+
+  }, [])
+
   return (
     <ul>
       <li className="menu-btn menu-item">
@@ -36,20 +64,10 @@ export default function Sidebar() {
         <i className=""></i>
         <span>TEMPLATE</span>
       </li>
+
       <ul className="tp-list">
-        <li className="tp-preview">
-          <img
-            src="https://preview.redd.it/y5zw8zs3rmp61.jpg?auto=webp&s=e3c86ed6132e112973ee848d27be3055a6d5202d"
-            alt=""
-          />
-        </li>
-        <li className="tp-preview">
-          <img
-            src="https://preview.redd.it/fern-stark-by-clou-v0-y7p09tit835b1.jpg?auto=webp&s=6bc9ece27fea6b73003a079f586343a097df45da"
-            alt=""
-          />
-        </li>
       </ul>
+
       <li className="divide-bar"></li>
 
       {/* FOLDER */}

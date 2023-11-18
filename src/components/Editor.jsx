@@ -45,8 +45,10 @@ function Editor() {
     setValue("");
   }
 
+
   return (
-    <div id="editor" className="h-full w-5/6 p-32">
+    <div id="editor" className="relative h-full w-5/6 p-32">
+      <button onClick={handleSubmit} className="absoulute border px-6 py-4 top-0 radius">Submit</button>
         <ReactQuill
           theme="bubble"
           value={value}
@@ -57,7 +59,6 @@ function Editor() {
           formats={formats}
           modules={modules}
         />
-        <button onClick={handleSubmit}>Submit</button>
     </div>
   );
 }
