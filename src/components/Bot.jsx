@@ -1,7 +1,7 @@
 import "../styles/bot.css";
 import { collection, query, getDocs } from "firebase/firestore";
 import { db } from "../firebase";
-import { shortenText } from "./ShortenText";
+// import { shortenText } from "./ShortenText";
 
 const q = query(collection(db, "API_KEY"));
 const querySnapshot = await getDocs(q);
