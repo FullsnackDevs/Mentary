@@ -14,16 +14,24 @@ export default function Sidebar() {
       const q = query(collection(db, "blogs"));
   
       const querySnapshot = await getDocs(q);
-      const list = document.querySelector('.tp-list');
-      {querySnapshot.forEach((doc) => {
-        // doc.data() is never undefined for query doc snapshots
-        console.log(doc.id, " => ", doc.data().time);
-        const child = document.createElement('li');
-        child.innerHTML = `${doc.data().time}`
-        list.appendChild(child);
-        console.log(child)
-  
-      })}
+      const children = querySnapshot.forEach(function(doc) {
+        //   // doc.data() is never undefined for query doc snapshots
+        //   console.log(doc.id, " => ", doc.data().time);
+        //   const child = document.createElement('li');
+        //   child.innerHTML = `${doc.data().time}`
+        //   list.appendChild(child);
+        return(
+          <Link 
+            to={`/blog/${doc.id}`}
+            key={`/blog/${doc.id}`}
+          >
+            <li>
+              ${doc.data().time}
+            </li>
+          </Link>
+        )
+      })
+      console.log(children)
     }
 
     if(!check){
@@ -66,6 +74,7 @@ export default function Sidebar() {
       </li>
 
       <ul className="tp-list">
+       
       </ul>
 
       <li className="divide-bar"></li>
