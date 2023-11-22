@@ -39,11 +39,6 @@ const formats = [
   "video",
 ];
 
-let expressPredicted = "";
-export function getExpress() {
-  return expressPredicted;
-}
-
 export function Editor() {
   const [value, setValue] = useState("");
 

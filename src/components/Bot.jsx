@@ -1,7 +1,6 @@
 import "../styles/bot.css";
 import { collection, query, getDocs } from "firebase/firestore";
 import { db } from "../firebase";
-// import { shortenText } from "./ShortenText";
 
 const q = query(collection(db, "API_KEY"));
 const querySnapshot = await getDocs(q);
@@ -18,8 +17,6 @@ export const expressEmotion = async (text) => {
     return;
   }
 
-  //   await shortenText(text);
-
   await fetch(url, {
     method: "POST",
     headers: {
@@ -33,6 +30,7 @@ export const expressEmotion = async (text) => {
   })
     .then(async (res) => await res.json())
     .then(async (data) => {
+      console.log(await data);
       const currentExpress = await data.response.text;
       const botSection = document.querySelector("#bot-response");
       botSection.innerHTML = currentExpress;
