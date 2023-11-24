@@ -1,17 +1,21 @@
 import { useEffect, useLayoutEffect, useState } from "react";
 import ReactQuill, { Quill } from "react-quill";
 import "react-quill/dist/quill.bubble.css";
-import { collection, doc, updateDoc, query, getDocs } from "firebase/firestore";
+import { collection, doc, updateDoc, query, getDocs, deleteDoc  } from "firebase/firestore";
 import { db } from "../firebase";
 import { Navigate } from "react-router-dom";
 import { useParams } from "react-router-dom";
 import "../styles/blog.css";
+import { useNavigate } from 'react-router-dom';
 
 const children = [];
 var initialValue = "";
+var check = false;
 function Editor() {
+  const navigate = useNavigate();
+  const [value, setValue] = useState("");
   const params = useParams();
-  useEffect(() => {
+  useLayoutEffect(() => {
     async function updateBlog() {
       const q = query(collection(db, "blogs"));
 
@@ -19,14 +23,16 @@ function Editor() {
 
       querySnapshot.forEach(function (doc) {
         if (doc.id === params.docId) {
-          if (doc.data().text !== undefined) initialValue = doc.data().text;
+          if (doc.data().text !== undefined){
+            initialValue = doc.data().text;
+            document.querySelector('.ql-editor').innerHTML = initialValue;
+            return;
+          } 
         }
       });
     }
     updateBlog();
   }, [params]);
-  const [value, setValue] = useState(initialValue);
-  const [title, setTitle] = useState("");
 
   const modules = {
     toolbar: [
@@ -66,11 +72,16 @@ function Editor() {
     setValue(e.target);
   };
 
+  const handleDelete = async(e) => {
+    await deleteDoc(doc(db, "blogs", params.docId));
+    navigate('/', { replace: true });
+  };
+
   async function handleUpdate() {
     const docRef = doc(db, "blogs", params.docId);
     const updateDb = await updateDoc(docRef, {
-      code: document.querySelector(".ql-editor").innerText,
-      time: new Date().toLocaleString(),
+      text: document.querySelector(".ql-editor").innerText,
+      createdTime: new Date().toLocaleString(),
     });
     console.log("Document update with ID: ", docRef.id);
     <Navigate to={`/blog/${params.docId}`} />;
@@ -82,11 +93,11 @@ function Editor() {
         <button onClick={handleUpdate} className="blog-btn">
           Save
         </button>
-        <button className="blog-btn delete-btn">Delete</button>
+        <button className="blog-btn delete-btn" onClick={handleDelete}>Delete</button>
       </div>
       <ReactQuill
         theme="bubble"
-        value={initialValue}
+        value={value}
         onChange={handleChange}
         className="h-screen w-full"
         placeholder="Typing..."
