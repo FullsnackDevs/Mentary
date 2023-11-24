@@ -1,13 +1,11 @@
 import { useState } from "react";
-import ReactQuill, { Quill } from "react-quill";
+import ReactQuill from "react-quill";
 import "react-quill/dist/quill.bubble.css";
 import { collection, addDoc } from "firebase/firestore";
 import { db } from "../firebase";
 
-const children = [];
 function Editor() {
   const [value, setValue] = useState("");
-  const [title, setTitle] = useState("");
 
   const modules = {
     toolbar: [
@@ -48,10 +46,14 @@ function Editor() {
   };
 
   async function handleSubmit() {
+    const markdownText = document.querySelector(".ql-editor").innerHTML;
+    const displayText = document.querySelector(".ql-editor").innerText;
+
     const docRef = await addDoc(collection(db, "blogs"), {
-      title: "Untitled",
-      text: document.querySelector(".ql-editor").innerHTML,
+      text: markdownText,
+      displayText: displayText,
       createdTime: new Date().toLocaleString(),
+      lastEditedTime: new Date().toLocaleString(),
     });
     console.log("Document written with ID: ", docRef.id);
     setValue("");

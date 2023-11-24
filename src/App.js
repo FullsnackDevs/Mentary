@@ -19,7 +19,8 @@ export default function App() {
   });
 
   useEffect(() => {
-    document.querySelector(".ql-container").style.fontSize = "16px";
+    document.querySelector(".ql-container").style.fontSize = "1rem";
+    document.querySelector(".ql-editor").style.fontSize = "1rem";
   });
 
   return (

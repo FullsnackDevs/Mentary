@@ -4,7 +4,7 @@ import { db } from "../firebase";
 import { useLayoutEffect } from "react";
 import "../styles/folder.css";
 import { getTitle } from "../utils/getTitle.js";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 
 const children = [];
 var check = false;
@@ -26,8 +26,8 @@ export default function Sidebar() {
   }, []);
 
   const handleNew = (e) => {
-    navigate('/', { replace: true });
-  }
+    navigate("/", { replace: true });
+  };
 
   return (
     <ul>
@@ -49,7 +49,7 @@ export default function Sidebar() {
           <a onClick={handleNew}>New</a>
         </li>
         {children.map((child) => {
-          const blogTitle = getTitle(child.data().text);
+          const blogTitle = getTitle(child.data().displayText);
 
           return (
             <li className="file" key={`/blog/${child.id}`}>
