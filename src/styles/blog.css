@@ -1,0 +1,26 @@
+.blog-btn {
+  display: inline-block;
+  font-family: var(--font-semibold);
+  padding: 8px 16px;
+  background-color: var(--background-white);
+  cursor: pointer;
+  border-radius: 10px;
+  transition: all 0.25s ease;
+  margin-right: 16px;
+  border: 1px solid var(--background-dark-gray);
+}
+
+.blog-btn:hover,
+.delete-btn:hover {
+  scale: 1.05;
+  box-shadow: var(--shadow);
+  color: var(--text-white);
+  background-color: var(--background-dark-gray);
+  /* border: 0px; */
+  /* opacity: 0.8; */
+}
+
+.delete-btn:hover {
+  background-color: var(--text-red);
+  border-color: var(--text-red);
+}

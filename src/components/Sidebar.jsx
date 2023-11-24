@@ -3,6 +3,7 @@ import { collection, query, getDocs } from "firebase/firestore";
 import { db } from "../firebase";
 import { useLayoutEffect } from "react";
 import "../styles/folder.css";
+import { getTitle } from "../utils/getTitle.js";
 
 const children = [];
 var check = false;
@@ -12,7 +13,7 @@ export default function Sidebar() {
       const q = query(collection(db, "blogs"));
 
       const querySnapshot = await getDocs(q);
-      querySnapshot.forEach(function (doc) {
+      querySnapshot.forEach((doc) => {
         children.push(doc);
       });
     }
@@ -42,10 +43,13 @@ export default function Sidebar() {
           <a>New</a>
         </li>
         {children.map((child) => {
+          const blogTitle = getTitle(child.data().text);
+          console.log(blogTitle);
+
           return (
             <li className="file" key={`/blog/${child.id}`}>
               <i className="ri-file-2-line"></i>
-              <Link to={`/blog/${child.id}`}>{child.data().time}</Link>
+              <Link to={`/blog/${child.id}`}>{blogTitle}</Link>
             </li>
           );
         })}

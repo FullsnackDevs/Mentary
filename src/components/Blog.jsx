@@ -5,12 +5,13 @@ import { collection, doc, updateDoc, query, getDocs } from "firebase/firestore";
 import { db } from "../firebase";
 import { Navigate } from "react-router-dom";
 import { useParams } from "react-router-dom";
+import "../styles/blog.css";
 
 const children = [];
 var initialValue = "";
 function Editor() {
   const params = useParams();
-  useLayoutEffect(() => {
+  useEffect(() => {
     async function updateBlog() {
       const q = query(collection(db, "blogs"));
 
@@ -18,7 +19,7 @@ function Editor() {
 
       querySnapshot.forEach(function (doc) {
         if (doc.id === params.docId) {
-          if (doc.data().code !== undefined) initialValue = doc.data().code;
+          if (doc.data().text !== undefined) initialValue = doc.data().text;
         }
       });
     }
@@ -68,7 +69,7 @@ function Editor() {
   async function handleUpdate() {
     const docRef = doc(db, "blogs", params.docId);
     const updateDb = await updateDoc(docRef, {
-      code: document.querySelector(".ql-editor").innerHTML,
+      code: document.querySelector(".ql-editor").innerText,
       time: new Date().toLocaleString(),
     });
     console.log("Document update with ID: ", docRef.id);
@@ -77,12 +78,12 @@ function Editor() {
 
   return (
     <div id="editor" className="relative h-full w-5/6 p-32">
-      <button
-        onClick={handleUpdate}
-        className="absoulute border px-6 py-4 top-0 radius"
-      >
-        Update
-      </button>
+      <div className="tool-bar">
+        <button onClick={handleUpdate} className="blog-btn">
+          Save
+        </button>
+        <button className="blog-btn delete-btn">Delete</button>
+      </div>
       <ReactQuill
         theme="bubble"
         value={initialValue}
@@ -96,4 +97,5 @@ function Editor() {
     </div>
   );
 }
+
 export default Editor;

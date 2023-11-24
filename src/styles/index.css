@@ -9,10 +9,13 @@
 :root {
   --text-black: #0e1111;
   --text-white: #fff;
+  --text-red: #ff0000;
+  --background-dark-gray: #5a5a5a;
   --background-gray: #dfdfdf;
   --background-white: #fff;
   --background-hover: #f5f5f5;
   --shadow: rgba(0, 0, 0, 0.15) 0 0 5px;
+  --border-round: 10px;
 
   /* FONT */
   --font-regular: "gg sans Normal Regular";
@@ -27,7 +30,6 @@ html {
   box-sizing: border-box;
   font-family: var(--font-regular), "gg sans", "Inter", sans-serif;
   -webkit-tap-highlight-color: transparent;
-  font-size: 1rem;
   color: var(--text-black);
 }
 
@@ -35,7 +37,7 @@ html {
   padding: 0;
   margin: 0;
   box-sizing: inherit;
-  letter-spacing: 1px;
+  letter-spacing: 0.02em;
 }
 
 i {
@@ -95,7 +97,7 @@ button.menu-btn:hover {
 }
 
 .menu-btn.menu-item:hover {
-  color: #ff0000;
+  color: var(--text-red);
 }
 
 .menu-item {
@@ -121,7 +123,6 @@ button.menu-btn:hover {
 .menu-item > span {
   flex-grow: 1;
   margin-left: 16px;
-  font-size: 1rem;
 }
 
 .divide-bar {

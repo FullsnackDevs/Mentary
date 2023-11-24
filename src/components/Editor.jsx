@@ -49,8 +49,9 @@ function Editor() {
 
   async function handleSubmit() {
     const docRef = await addDoc(collection(db, "blogs"), {
-      code: document.querySelector(".ql-editor").innerHTML,
-      time: new Date().toLocaleString(),
+      title: "Untitled",
+      text: document.querySelector(".ql-editor").innerHTML,
+      createdTime: new Date().toLocaleString(),
     });
     console.log("Document written with ID: ", docRef.id);
     setValue("");
@@ -58,10 +59,7 @@ function Editor() {
 
   return (
     <div id="editor" className="relative h-full w-5/6 p-32">
-      <button
-        onClick={handleSubmit}
-        className="absoulute border px-6 py-4 top-0 radius"
-      >
+      <button onClick={handleSubmit} className="border px-6 py-4 top-0 radius">
         Submit
       </button>
       <ReactQuill

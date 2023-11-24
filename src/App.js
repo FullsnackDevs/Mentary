@@ -19,8 +19,7 @@ export default function App() {
   });
 
   useEffect(() => {
-    document.querySelector(".ql-editor").style.fontSize = "large";
-    document.querySelector(".ql-editor").style.letterSpacing = "2px";
+    document.querySelector(".ql-container").style.fontSize = "16px";
   });
 
   return (
