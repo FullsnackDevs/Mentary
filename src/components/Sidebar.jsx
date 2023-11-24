@@ -1,44 +1,22 @@
 import { Link } from "react-router-dom";
-import Editor from "./Editor";
 import { collection, query, getDocs} from "firebase/firestore";
-import { getDatabase} from "firebase/database";
 import { db } from "../firebase";
-import { createElement, useEffect, useLayoutEffect } from "react";
+import {useLayoutEffect } from "react";
 
 
+const children = [];
 export default function Sidebar() {
 
-  var check = false;
-  useEffect(() => {
+  useLayoutEffect(() => {
     async function getBlogs() {
       const q = query(collection(db, "blogs"));
   
       const querySnapshot = await getDocs(q);
-      const children = querySnapshot.forEach(function(doc) {
-        //   // doc.data() is never undefined for query doc snapshots
-        //   console.log(doc.id, " => ", doc.data().time);
-        //   const child = document.createElement('li');
-        //   child.innerHTML = `${doc.data().time}`
-        //   list.appendChild(child);
-        return(
-          <Link 
-            to={`/blog/${doc.id}`}
-            key={`/blog/${doc.id}`}
-          >
-            <li>
-              ${doc.data().time}
-            </li>
-          </Link>
-        )
+      querySnapshot.forEach(function(doc) {
+        children.push(doc);
       })
-      console.log(children)
     }
-
-    if(!check){
-      getBlogs()
-      check = true;
-    }
-
+    getBlogs();
   }, [])
 
   return (
@@ -74,7 +52,20 @@ export default function Sidebar() {
       </li>
 
       <ul className="tp-list">
-       
+        {console.log(children.length)}
+       {children.map((child) => {
+        console.log(child);
+        return (
+          <li>
+            <Link 
+              to={`/blog/${child.id}`}
+              key={`/blog/${child.id}`}
+            >
+                {child.data().time}
+            </Link>
+          </li>
+        )
+       })}
       </ul>
 
       <li className="divide-bar"></li>

@@ -8,9 +8,24 @@ import { useParams } from "react-router-dom";
 
 
 const children = [];
+var initialValue = "";
 function Editor() {
   const params = useParams();
-  const [value, setValue] = useState("");
+  useLayoutEffect(() => {
+    async function updateBlog() {
+      const q = query(collection(db, "blogs"));
+  
+      const querySnapshot = await getDocs(q);
+  
+      querySnapshot.forEach(function(doc) {
+        if(doc.id === params.docId){
+         if(doc.data().code != undefined) initialValue = doc.data().code;
+        }
+      })
+    }
+    updateBlog();
+  }, [])
+  const [value, setValue] = useState(initialValue);
   const [title, setTitle] = useState("");
 
   
@@ -42,7 +57,7 @@ function Editor() {
     setValue(e.target);
   }
 
-  async function handleSubmit(){
+  async function handleUpdate(){
     const docRef = await addDoc(collection(db, "blogs"), {
       code: document.querySelector('.ql-editor').innerHTML,
       time: new Date().toLocaleString(),
@@ -53,7 +68,7 @@ function Editor() {
 
   return (
     <div id="editor" className="relative h-full w-5/6 p-32">
-      <button onClick={handleSubmit} className="absoulute border px-6 py-4 top-0 radius">Submit</button>
+      <button onClick={handleUpdate} className="absoulute border px-6 py-4 top-0 radius">Update</button>
         <ReactQuill
           theme="bubble"
           value={value}
