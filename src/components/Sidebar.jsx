@@ -1,80 +1,55 @@
 import { Link } from "react-router-dom";
-import { collection, query, getDocs} from "firebase/firestore";
+import { collection, query, getDocs } from "firebase/firestore";
 import { db } from "../firebase";
-import {useLayoutEffect } from "react";
-
+import { useLayoutEffect } from "react";
+import "../styles/folder.css";
 
 const children = [];
+var check = false;
 export default function Sidebar() {
-
   useLayoutEffect(() => {
     async function getBlogs() {
       const q = query(collection(db, "blogs"));
-  
+
       const querySnapshot = await getDocs(q);
-      querySnapshot.forEach(function(doc) {
+      querySnapshot.forEach(function (doc) {
         children.push(doc);
-      })
+      });
     }
-    getBlogs();
-  }, [])
+    if (!check) {
+      getBlogs();
+      check = true;
+    }
+  }, []);
 
   return (
     <ul>
-      <li className="menu-btn menu-item">
-        <i className="fa-solid fa-x"></i>
+      <li className="menu-item menu-btn">
+        <i className="ri-close-line"></i>
         <span>Close</span>
       </li>
       <li className="divide-bar"></li>
 
-      {/* <button Link="/" element={<Editor/>}>New</button> */}
-
-      {/* FILE */}
-      <li className="menu-item menu-syn">
-        <i className=""></i>
-        <span>FILE</span>
-      </li>
-      <li className="menu-item">
-        <i className="fa-solid fa-plus"></i>
-        <span>New</span>
-      </li>
-      <li className="menu-item">
-        <i className="fa-solid fa-folder-plus"></i>
-        <span>New Folder</span>
-      </li>
-
-      <li className="divide-bar"></li>
-
-      {/* TEMPLATE */}
-      <li className="menu-item menu-syn">
-        <i className=""></i>
-        <span>TEMPLATE</span>
-      </li>
-
-      <ul className="tp-list">
-        {console.log(children.length)}
-       {children.map((child) => {
-        console.log(child);
-        return (
-          <li>
-            <Link 
-              to={`/blog/${child.id}`}
-              key={`/blog/${child.id}`}
-            >
-                {child.data().time}
-            </Link>
-          </li>
-        )
-       })}
-      </ul>
-
-      <li className="divide-bar"></li>
-
       {/* FOLDER */}
-      <li className="menu-item menu-syn">
+      <li className="menu-item menu--section-title">
         <i className=""></i>
         <span>FOLDER</span>
       </li>
+
+      <ul className="folder-list">
+        <li className="file file-new--button">
+          <i className="ri-add-line"></i>
+          <a>New</a>
+        </li>
+        {children.map((child) => {
+          return (
+            <li className="file" key={`/blog/${child.id}`}>
+              <i className="ri-file-2-line"></i>
+              <Link to={`/blog/${child.id}`}>{child.data().time}</Link>
+            </li>
+          );
+        })}
+      </ul>
     </ul>
   );
 }

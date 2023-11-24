@@ -2,17 +2,30 @@
 @tailwind components;
 @tailwind utilities;
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap");
+@import url("https://fonts.cdnfonts.com/css/gg-sans-2");
+@import "./fonts.css";
+@import url("https://cdnjs.cloudflare.com/ajax/libs/remixicon/3.5.0/remixicon.css");
 
 :root {
-  --text-black: #3f3f3f;
-  --text-white: #ffffff;
+  --text-black: #0e1111;
+  --text-white: #fff;
+  --background-gray: #dfdfdf;
+  --background-white: #fff;
+  --background-hover: #f5f5f5;
+  --shadow: rgba(0, 0, 0, 0.15) 0 0 5px;
+
+  /* FONT */
+  --font-regular: "gg sans Normal Regular";
+  --font-medium: "gg sans Medium Regular";
+  --font-semibold: "gg sans SemiBold Regular";
+  --font-bold: "gg sans Bold";
 }
 
 html {
   font-size: 16px;
   line-height: 1rem;
   box-sizing: border-box;
-  font-family: "Inter", "Helvetica Neue", "Poppins", Arial, sans-serif;
+  font-family: var(--font-regular), "gg sans", "Inter", sans-serif;
   -webkit-tap-highlight-color: transparent;
   font-size: 1rem;
   color: var(--text-black);
@@ -26,8 +39,7 @@ html {
 }
 
 i {
-  margin: 0 auto;
-  font-size: 1rem;
+  font-size: 1.25rem;
 }
 
 .menu-btn {
@@ -36,15 +48,23 @@ i {
 }
 
 .menu-icon {
-  background-color: white;
-  width: 3rem;
-  height: 3rem;
+  background-color: var(--background-gray);
+  width: 48px;
+  height: 48px;
   border-radius: 50%;
-  box-shadow: rgba(48, 48, 48, 0.2) 0 0 20px;
+}
+
+.menu-btn.menu-icon {
+  font-family: var(--font-semibold);
+  position: fixed;
+  top: 24px;
+  left: 24px;
+  z-index: 10;
 }
 
 button.menu-btn:hover {
-  color: #707070;
+  scale: 1.1;
+  box-shadow: var(--shadow);
 }
 
 .sidebar {
@@ -57,26 +77,25 @@ button.menu-btn:hover {
   padding: 16px 0;
   overflow-y: auto;
   z-index: 100;
-  background-color: #ffffff;
+  background-color: var(--background-white);
   transform: translateX(-100%);
   transition: transform 0.25s;
-  box-shadow: rgba(48, 48, 48, 0.2) 0 0 20px;
+  box-shadow: var(--shadow);
 }
 
 .sidebar.active {
   transform: translateX(0);
 }
 
-.menu-syn {
-  opacity: 0.5;
+.menu--section-title {
+  font-family: var(--font-semibold);
+  opacity: 0.3;
   cursor: default !important;
-  background-color: #ffffff !important;
+  background-color: var(--background-white) !important;
 }
 
 .menu-btn.menu-item:hover {
   color: #ff0000;
-  /* color: white;
-  background-color: #ff0000; */
 }
 
 .menu-item {
@@ -91,7 +110,7 @@ button.menu-btn:hover {
 }
 
 .menu-item:hover {
-  background-color: #f5f5f5;
+  background-color: var(--background-hover);
 }
 
 .menu-item > i {
@@ -103,45 +122,12 @@ button.menu-btn:hover {
   flex-grow: 1;
   margin-left: 16px;
   font-size: 1rem;
-  /* font-weight: 500; */
 }
 
 .divide-bar {
   width: 90%;
   height: 1px;
-  background-color: #e0e0e0;
+  background-color: var(--text-black);
+  opacity: 0.2;
   margin: 8px auto;
-}
-
-/* TEMPLATE LIST */
-.tp-list {
-  width: 100%;
-  height: 500px;
-  min-height: min-content;
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  padding: 16px;
-  gap: 8px;
-  overflow-y: scroll;
-}
-
-.tp-preview {
-  width: calc(50% - 4px);
-  height: auto;
-  padding: 4px;
-  border-radius: 8px;
-  transition: all 0.25s ease, box-shadow 0.1s ease;
-}
-
-.tp-preview:hover {
-  transform: scale(1.05);
-  box-shadow: rgba(48, 48, 48, 0.1) 0 0 20px;
-  cursor: pointer;
-}
-
-.tp-preview > img {
-  object-fit: cover;
-  border-radius: 4px;
-  height: 100%;
 }

@@ -1,0 +1,51 @@
+@font-face {
+  font-family: "gg sans Bold";
+  font-style: normal;
+  font-weight: normal;
+  src: local("gg sans Bold"),
+    url("../fonts/gg-sans-2-cufonfonts-webfont/gg\ sans\ Bold.woff")
+      format("woff");
+}
+
+@font-face {
+  font-family: "gg sans Normal Regular";
+  font-style: normal;
+  font-weight: normal;
+  src: local("gg sans Normal Regular"),
+    url("../fonts/gg-sans-2-cufonfonts-webfont/gg\ sans\ Regular.woff")
+      format("woff");
+}
+
+@font-face {
+  font-family: "gg sans Medium Regular";
+  font-style: normal;
+  font-weight: normal;
+  src: local("gg sans Medium Regular"),
+    url("../fonts/gg-sans-2-cufonfonts-webfont/gg\ sans\ Medium.woff")
+      format("woff");
+}
+
+@font-face {
+  font-family: "gg sans SemiBold Regular";
+  font-style: normal;
+  font-weight: normal;
+  src: local("gg sans SemiBold Regular"),
+    url("../fonts/gg-sans-2-cufonfonts-webfont/gg\ sans\ Semibold.woff")
+      format("woff");
+}
+
+.font-regular {
+  font-family: "gg sans Normal Regular";
+}
+
+.font-medium {
+  font-family: "gg sans Medium Regular";
+}
+
+.font-semibold {
+  font-family: "gg sans SemiBold Regular";
+}
+
+.font-bold {
+  font-family: "gg sans Bold";
+}

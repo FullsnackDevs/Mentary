@@ -25,18 +25,25 @@ export default function App() {
 
   return (
     <div className="flex justify-between h-screen w-full relative superbody">
-      <button className="menu-btn menu-icon fixed top-3 left-3 z-10">
+      {/* MENU BUTTON */}
+      <button className="menu-btn menu-icon">
         <i
-          className="fa-solid fa-bars"
+          className="ri-menu-line"
           style={{
             margin: "0 -2px 0 0",
           }}
         ></i>
       </button>
+
+      {/* SIDEBAR */}
       <div className={state ? "sidebar active" : "sidebar"}>
         <Sidebar />
       </div>
+
+      {/* EDITOR */}
       <Outlet />
+
+      {/* BOT SECTION */}
       <Bot />
     </div>
   );
