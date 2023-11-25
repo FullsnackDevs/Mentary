@@ -3,10 +3,11 @@ import ReactQuill from "react-quill";
 import "react-quill/dist/quill.bubble.css";
 import { collection, addDoc } from "firebase/firestore";
 import { db } from "../firebase";
+import { SpeechToText } from "./SpeechToText";
+
 
 function Editor() {
   const [value, setValue] = useState("");
-
   const modules = {
     toolbar: [
       [{ header: "1" }, { header: "2" }],
@@ -65,6 +66,7 @@ function Editor() {
       <button onClick={handleSubmit} className="border px-6 py-4 top-0 radius">
         Submit
       </button>
+      <SpeechToText/>
       <ReactQuill
         theme="bubble"
         value={value}
