@@ -132,3 +132,7 @@ button.menu-btn:hover {
   opacity: 0.2;
   margin: 8px auto;
 }
+
+.ql-container, .ql-editor {
+  font-size: 1rem;
+}

@@ -18,7 +18,6 @@ import { expressEmotion } from "./Bot.jsx";
 var initialValue = "";
 function Editor() {
   const navigate = useNavigate();
-  const [value, setValue] = useState("");
   const params = useParams();
   useLayoutEffect(() => {
     async function updateBlog() {
@@ -38,6 +37,7 @@ function Editor() {
     }
     updateBlog();
   }, [params]);
+  const [value, setValue] = useState("d"); // bằng một cách thần kì nào đó có d vào thì page nó tự hiện content
 
   const modules = {
     toolbar: [
@@ -80,6 +80,7 @@ function Editor() {
   const handleDelete = async (e) => {
     await deleteDoc(doc(db, "blogs", params.docId));
     navigate("/", { replace: true });
+    window.location.reload();
   };
 
   async function handleUpdate() {
@@ -99,6 +100,7 @@ function Editor() {
     expressEmotion(displayText);
 
     <Navigate to={`/blog/${params.docId}`} />;
+    window.location.reload();
   }
 
   return (

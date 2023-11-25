@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { collection, query, getDocs } from "firebase/firestore";
 import { db } from "../firebase";
-import { useLayoutEffect } from "react";
+import { useEffect, useLayoutEffect } from "react";
 import "../styles/folder.css";
 import { getTitle } from "../utils/getTitle.js";
 import { useNavigate } from "react-router-dom";
@@ -10,7 +10,7 @@ const children = [];
 var check = false;
 export default function Sidebar() {
   const navigate = useNavigate();
-  useLayoutEffect(() => {
+  useEffect(() => {
     async function getBlogs() {
       const q = query(collection(db, "blogs"));
 
@@ -23,7 +23,7 @@ export default function Sidebar() {
       getBlogs();
       check = true;
     }
-  }, []);
+  });
 
   const handleNew = (e) => {
     navigate("/", { replace: true });
@@ -44,9 +44,9 @@ export default function Sidebar() {
       </li>
 
       <ul className="folder-list">
-        <li className="file file-new--button">
+        <li className="file file-new--button" onClick={handleNew}>
           <i className="ri-add-line"></i>
-          <a onClick={handleNew}>New</a>
+          <a>New</a>
         </li>
         {children.map((child) => {
           const blogTitle = getTitle(child.data().displayText);

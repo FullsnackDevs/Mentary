@@ -57,6 +57,7 @@ function Editor() {
     });
     console.log("Document written with ID: ", docRef.id);
     setValue("");
+    window.location.reload();
   }
 
   return (

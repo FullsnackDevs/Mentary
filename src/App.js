@@ -18,11 +18,6 @@ export default function App() {
     );
   });
 
-  useEffect(() => {
-    document.querySelector(".ql-container").style.fontSize = "1rem";
-    document.querySelector(".ql-editor").style.fontSize = "1rem";
-  });
-
   return (
     <div className="flex justify-between h-screen w-full relative superbody">
       {/* MENU BUTTON */}
