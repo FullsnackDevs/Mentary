@@ -21,18 +21,18 @@ export const SpeechToText = () => {
 
     
       return (
-        <div>
-          <p>Microphone: {listening ? 'on' : 'off'}</p>
+        <div className='py-4'>
           <button
             onTouchStart={startListening}
             onMouseDown={startListening}
             onTouchEnd={SpeechRecognition.stopListening}
             onMouseUp={SpeechRecognition.stopListening}
+            className='blog-btn'
           >
             Hold to talk
-        </button>
-            <p>{transcript}</p>
-            <button onClick={handleAdd}>Add</button>
+          </button>
+          <p className='py-2 pl-2'>{transcript}</p>
+          <button className='blog-btn' onClick={handleAdd}>Add</button>
         </div>
       );
 }

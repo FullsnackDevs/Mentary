@@ -14,6 +14,7 @@ import { Navigate, useParams, useNavigate } from "react-router-dom";
 import {} from "react-router-dom";
 import "../styles/blog.css";
 import { expressEmotion } from "./Bot.jsx";
+import { SpeechToText } from "./SpeechToText.jsx";
 
 var initialValue = "";
 function Editor() {
@@ -112,6 +113,9 @@ function Editor() {
         <button className="blog-btn delete-btn" onClick={handleDelete}>
           Delete
         </button>
+      </div>
+      <div className="ml-2">
+        <SpeechToText/>
       </div>
       <div className="divide-section"></div>
       <ReactQuill
