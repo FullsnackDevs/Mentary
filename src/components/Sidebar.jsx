@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { collection, query, getDocs } from "firebase/firestore";
 import { db } from "../firebase";
-import { useEffect, useLayoutEffect } from "react";
+import { useEffect } from "react";
 import "../styles/folder.css";
 import { getTitle } from "../utils/getTitle.js";
 import { useNavigate } from "react-router-dom";
@@ -46,7 +46,7 @@ export default function Sidebar() {
       <ul className="folder-list">
         <li className="file file-new--button" onClick={handleNew}>
           <i className="ri-add-line"></i>
-          <a>New</a>
+          <span>New</span>
         </li>
         {children.map((child) => {
           const blogTitle = getTitle(child.data().displayText);
@@ -54,7 +54,9 @@ export default function Sidebar() {
           return (
             <li className="file" key={`/blog/${child.id}`}>
               <i className="ri-file-2-line"></i>
-              <Link to={`/blog/${child.id}`}>{blogTitle}</Link>
+              <span>
+                <Link to={`/blog/${child.id}`}>{blogTitle}</Link>
+              </span>
             </li>
           );
         })}

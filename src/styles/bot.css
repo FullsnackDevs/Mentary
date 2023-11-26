@@ -1,9 +1,8 @@
 .bot-section {
-  border: #ccc;
   width: 300px;
-  height: 400px;
-  border-radius: 10px;
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+  height: min-content;
+  border-radius: var(--border-round);
+  border: 1px solid var(--background-dark-gray);
   background-color: #ffffff;
   position: fixed;
   /* bottom: 0; */
@@ -13,6 +12,11 @@
   z-index: 100;
   overflow: hidden;
   transition: all 0.5s ease;
+  cursor: default;
+}
+
+.bot-section:hover {
+  box-shadow: var(--shadow);
 }
 
 .bot-section__title {

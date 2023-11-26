@@ -4,7 +4,7 @@ import "react-quill/dist/quill.bubble.css";
 import { collection, addDoc } from "firebase/firestore";
 import { db } from "../firebase";
 import { SpeechToText } from "./SpeechToText";
-
+import "../styles/blog.css";
 
 function Editor() {
   const [value, setValue] = useState("");
@@ -62,11 +62,16 @@ function Editor() {
   }
 
   return (
-    <div id="editor" className="relative h-full w-5/6 p-32">
-      <button onClick={handleSubmit} className="border px-6 py-4 top-0 radius">
-        Submit
-      </button>
-      <SpeechToText/>
+    <div id="editor" className="editor-section">
+      <div className="tool-bar">
+        <button onClick={handleSubmit} className="blog-btn submit-btn">
+          Submit
+        </button>
+      </div>
+      <div className="ml-2">
+        <SpeechToText />
+      </div>
+      <div className="divide-section"></div>
       <ReactQuill
         theme="bubble"
         value={value}

@@ -1,7 +1,7 @@
 import { Bot } from "./components/Bot.jsx";
 import Sidebar from "./components/Sidebar";
 import "./styles/index.css";
-import { useState, useLayoutEffect, useEffect } from "react";
+import { useState, useLayoutEffect } from "react";
 import { Outlet } from "react-router-dom";
 
 export default function App() {

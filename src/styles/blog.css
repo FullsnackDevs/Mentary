@@ -31,7 +31,8 @@
 }
 
 .blog-btn:hover,
-.delete-btn:hover {
+.delete-btn:hover,
+.submit-btn:hover {
   scale: 1.05;
   box-shadow: var(--shadow);
   color: var(--text-white);
@@ -41,4 +42,9 @@
 .delete-btn:hover {
   background-color: var(--text-red);
   border-color: var(--text-red);
+}
+
+.submit-btn:hover {
+  background-color: #5fbdff;
+  border-color: #5fbdff;
 }

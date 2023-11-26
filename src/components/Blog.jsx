@@ -10,7 +10,7 @@ import {
   deleteDoc,
 } from "firebase/firestore";
 import { db } from "../firebase";
-import { Navigate, useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import {} from "react-router-dom";
 import "../styles/blog.css";
 import { expressEmotion } from "./Bot.jsx";
@@ -100,8 +100,8 @@ function Editor() {
 
     expressEmotion(displayText);
 
-    <Navigate to={`/blog/${params.docId}`} />;
-    window.location.reload();
+    // <Navigate to={`/blog/${params.docId}`} />;
+    // window.location.reload();
   }
 
   return (
@@ -115,7 +115,7 @@ function Editor() {
         </button>
       </div>
       <div className="ml-2">
-        <SpeechToText/>
+        <SpeechToText />
       </div>
       <div className="divide-section"></div>
       <ReactQuill

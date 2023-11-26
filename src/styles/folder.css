@@ -21,8 +21,8 @@
   text-align: center;
 }
 
-.file > a {
-  margin-left: 4px;
+.file > span {
+  margin-left: 8px;
 }
 
 .file:hover {

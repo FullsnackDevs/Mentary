@@ -17,6 +17,9 @@ export const expressEmotion = async (blogText) => {
     return;
   }
 
+  console.log("Analyzing ...");
+  const botResponseSection = document.querySelector("#bot-response");
+  botResponseSection.innerHTML = "Analyzing ...";
   await fetch(url, {
     method: "POST",
     headers: {
@@ -32,9 +35,8 @@ export const expressEmotion = async (blogText) => {
     .then(async (data) => {
       console.log(await data);
       const currentExpress = await data.response.text;
-      const botSection = document.querySelector("#bot-response");
-      botSection.innerHTML = currentExpress;
-      console.log(currentExpress);
+      botResponseSection.innerHTML = currentExpress;
+      // console.log(currentExpress);
     });
 };
 
@@ -42,7 +44,7 @@ export function Bot() {
   return (
     <div className="bot-section">
       <p className="bot-section__title">Your expression</p>
-      <p id="bot-response"></p>
+      <p id="bot-response">How was your day?</p>
     </div>
   );
 }
